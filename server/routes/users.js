@@ -1,11 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var users = require('../controllers/userController')
+var userController = require('../controllers/userController')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  var token = "1234"
-  res.send({token: token});
-});
+router.post('/register', userController.register);
+router.post('/login', userController.login);
+router.delete('/:id', userController.delete);
 
 module.exports = router;
