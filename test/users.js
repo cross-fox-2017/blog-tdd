@@ -61,20 +61,53 @@ describe('Users API testing', () => {
       done()
     })
   })
-
-  // Uncomment below to avoid user input
-  // it('Insert new User', (done) => {
-  //   chai.request(url).post('/api/users').send({
-  //     username: 'dgana',
-  //     password: '123'
-  //   }).end((err, res) => {
-  //     expect(res.body).to.have.deep.property('username', 'dgana');
-  //     done()
-  //   })
-  // })
-  it('Get API users name', (done) => {
+  it('Get JSON data users username', (done) => {
     chai.request(url).get('/api/users').end((err, res) => {
-      expect(res.body).to.have.deep.property('name', 'dgana');
+      expect(res.body).to.have.deep.property('[0].username', 'dgana');
+      done()
+    })
+  })
+})
+
+/*
+describe('CRUD Users', () => {
+  // Add Users
+  it('Insert new User', (done) => {
+    chai.request(url).post('/api/users').send({
+      username: 'dgana',
+      password: '123'
+    }).end((err, res) => {
+      expect(res.body).to.have.deep.property('username', 'dgana');
+      done()
+    })
+  })
+  // Delete Users
+  it('Delete users data and return deleted data with params id', (done) => {
+    chai.request(url).delete('/api/users/58a1789c4da9ef2dffda925b').end((err, res) => {
+      console.log(res.body);
+      expect(res.body).to.have.deep.property('username', 'dgana');
+      done()
+    })
+  })
+})
+*/
+
+describe('blogs API testing', () => {
+  it('Blogs API connection', (done) => {
+    chai.request(url).get('/api/blogs').end((err, res) => {
+      expect(res).to.have.status(200)
+      done()
+    })
+  })
+  it('Users API JSON response', (done) => {
+    chai.request(url).get('/api/blogs').end((err, res) => {
+      expect(res).to.be.json
+      done()
+    })
+  })
+  it('Get blogs JSON data', (done) => {
+    chai.request(url).get('/api/blogs').end((err, res) => {
+      expect(res.body).to.have.deep.property('[0].title', 'Harry Potter');
       done()
     })
   })
