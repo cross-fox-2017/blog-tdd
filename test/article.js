@@ -8,9 +8,9 @@ chai.use(assertArrays)
 chai.use(chaiHttp)
 
 var url = 'http://localhost:3000'
-var dummyid = ""
 
 describe('blog engine CRUD Articles', function(){
+  var dummyid = ""
   it('expect api/user to return content', function(done){
     chai.request(url)
     .get('/api/articles')
@@ -19,7 +19,7 @@ describe('blog engine CRUD Articles', function(){
     })
     done()
   })
-  it('expect api/user to return json', function(done){
+  it('expect api/articles to return json', function(done){
     chai.request(url)
     .get('/api/articles')
     .end(function(err, res){
@@ -32,7 +32,19 @@ describe('blog engine CRUD Articles', function(){
     .post('/api/articles')
     .send({content: 'some content', title: 'some title', author: 'some author'})
     .end(function(err, res){
-      var dummyid = res.body._id
+      dummyid = res.body._id
+      expect(res.body).to.have.deep.property('content', 'some content')
+      expect(res.body).to.have.deep.property('title', 'some title')
+      expect(res.body).to.have.deep.property('author', 'some author')
+      expect(err).to.be.null;
+      expect(res).to.have.status(200);
+    })
+    done()
+  })
+  it('expect api/articles to return details of articles', function(done){
+    chai.request(url)
+    .get('/api/articles/'+dummyid)
+    .end(function(err, res){
       expect(res.body).to.have.deep.property('content', 'some content')
       expect(res.body).to.have.deep.property('title', 'some title')
       expect(res.body).to.have.deep.property('author', 'some author')
@@ -41,18 +53,18 @@ describe('blog engine CRUD Articles', function(){
   })
   it('expect api/articles to update created articles', function(done){
     chai.request(url)
-    .put(`/api/articles/${dummyid}`)
-    .send({content: 'change content', title: 'change title', author: 'change author'})
+    .put(`/api/articles/`+dummyid)
+    .send({content: 'change content'})
     .end(function(err, res){
       expect(res.body).to.have.deep.property('content', 'change content')
-      expect(res.body).to.have.deep.property('title', 'change title')
-      expect(res.body).to.have.deep.property('author', 'change author')
+      expect(err).to.be.null;
+      expect(res).to.have.status(200);
     })
     done()
   })
   it('expect api/articles to deleted new created articles', function(done){
     chai.request(url)
-    .delete(`/api/articles/${dummyid}`)
+    .delete(`/api/articles/`+dummyid)
     .end(function(err, res){
       expect(err).to.be.null;
       expect(res).to.have.status(200);

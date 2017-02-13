@@ -21,14 +21,9 @@ let articleController = {
   },
   delete: function(req, res){
     let id = req.params.id
-    articles.find({ _id: id }, function(err, article) {
-      console.log(article);
+    articles.findByIdAndRemove(id, function(err, article) {
       if (err) throw err;
-      if(!article){res.send('article not found')}
-      article.remove(function(err) {
-        if (err) throw err;
-        res.json(article);
-      });
+      res.json(article);
     });
   },
   update: function(req, res){
