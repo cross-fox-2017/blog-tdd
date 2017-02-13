@@ -91,24 +91,3 @@ describe('CRUD Users', () => {
   })
 })
 */
-
-describe('blogs API testing', () => {
-  it('Blogs API connection', (done) => {
-    chai.request(url).get('/api/blogs').end((err, res) => {
-      expect(res).to.have.status(200)
-      done()
-    })
-  })
-  it('Users API JSON response', (done) => {
-    chai.request(url).get('/api/blogs').end((err, res) => {
-      expect(res).to.be.json
-      done()
-    })
-  })
-  it('Get blogs JSON data', (done) => {
-    chai.request(url).get('/api/blogs').end((err, res) => {
-      expect(res.body).to.have.deep.property('[0].title', 'Harry Potter');
-      done()
-    })
-  })
-})
