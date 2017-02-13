@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   register: function(req, res) {
@@ -12,9 +13,11 @@ module.exports = {
   },
   login: function(req, res) {
     User.findOne({username:req.body.username}).then(function(data){
+      let token = jwt.sign({username:data.username},'rahasia')
+      console.log(token);
       !data ? res.send(`NO DATA`) :
       data.password != req.body.password ? res.send('WRONG PASS') :
-      res.send(data)
+      res.send(token)
     })
   },
   delete: function(req,res) {

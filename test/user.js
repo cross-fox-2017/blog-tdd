@@ -18,12 +18,12 @@ describe('Testing Users', function () {
       done()
     })
   })
-  it('should return username of new user', function (done) {
+  it('should return username of login user', function (done) {
     chai.request('http://localhost:3000')
     .post('/login')
-    .send({username: "timo", password: "1234"})
+    .send({username: "qblol", password: "1234"})
     .end(function(err,res){
-      res.body.username.should.equal("timo")
+      res.body.should.not.equal()
       done()
     })
   })

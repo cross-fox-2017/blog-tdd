@@ -3,6 +3,7 @@ const Post = require('../models/post');
 module.exports = {
   newPost: function(req, res) {
     let newPost = Post({
+      userid: "58a192a2a010362d858a5eaf",
       subject: req.body.subject,
       text: req.body.text
     })
