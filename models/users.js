@@ -3,9 +3,7 @@ const Schema = mongoose.Schema
 
 const userSchema = new Schema({
   username: String,
-  password: String,
-  created_at: Date,
-  updated_at: Date
+  password: String
 })
 
 const Users = mongoose.model('users', userSchema)
