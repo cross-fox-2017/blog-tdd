@@ -13,6 +13,6 @@ router.delete('/users/:id', userController.deleteUser)
 router.post('/blogs', blogController.addBlog)
 router.get('/blogs', blogController.getAllBlogs)
 router.delete('/blogs/:id', blogController.deleteBlog)
-// router.put('/blogs/:id', controller.updateBlog)
+router.put('/blogs/:id', blogController.updateBlog)
 
 module.exports = router

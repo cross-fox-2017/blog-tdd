@@ -24,6 +24,18 @@ const blogController = {
       if (err) throw err
       res.json(blog)
     })
+  },
+  updateBlog: (req, res) => {
+    Blogs.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      author: req.body.author,
+      description: req.body.description
+    }, {
+      new: true
+    }, (err, blog) => {
+      if(err) throw err
+      res.json(blog)
+    })
   }
 }
 
