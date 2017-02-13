@@ -4,6 +4,7 @@ var favicon = require('serve-favicon')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
+require('dotenv').config()
 
 var routes = require('./routes/index')
 var users = require('./routes/users')
@@ -34,7 +35,7 @@ mongoose.connection.on('disconnected', function () {
 })
 
 var app = express()
-
+mongoose.Promise = global.Promise
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade')

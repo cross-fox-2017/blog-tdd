@@ -6,12 +6,12 @@ chai.use(chaiHttp)
 
 const app = 'http://localhost:3000'
 
-describe('Testing Blog TDD', function () {
+describe('Testing Article', function () {
   // it('result - Post an article', function (done) {
   //   chai.request(app)
   //     .post('/article')
   //     .send({
-  //       title: 'Cerita yang akan dihapus',
+  //       title: 'Cerita yang akan dihapus Part 2',
   //       body: 'Some Article',
   //       author: 'Some Author'
   //     })
@@ -28,20 +28,21 @@ describe('Testing Blog TDD', function () {
     chai.request(app)
       .get('/articles')
       .end(function (err, res) {
-        expect(res.body).to.have.lengthOf(1)
+        expect(res.body).to.have.lengthOf(2)
         done()
       })
   })
 
-  it('result - Delete an Article', function (done) {
-    chai.request(app)
-      .delete('/article')
-      .send({
-        title: 'Cerita yang akan dihapus'
-      })
-      .end(function (err, res) {
-        expect(res.text).to.equal('Successfully Deleted')
-        done()
-      })
-  })
+// it('result - Delete an Article', function (done) {
+//   chai.request(app)
+//     .delete('/article')
+//     .send({
+//       title: 'Cerita yang akan dihapus Part 2'
+//     })
+//     .end(function (err, res) {
+//       expect(res.text).to.equal('Successfully Deleted')
+//       done()
+//     })
+// })
+//  DIUNCOMMENT APABILA UNTUK MENGECEK DELETE Article berdasarkan JUDUL / title
 })

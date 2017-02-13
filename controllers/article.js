@@ -18,7 +18,7 @@ module.exports = {
   getAllArticle: function (req, res) {
     models.find({is_deleted: 0})
       .then(function (data) {
-        res.send(data)
+        res.json(data)
       }).catch(function (err) {
       res.send(err)
     })
