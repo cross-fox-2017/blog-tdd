@@ -7,6 +7,13 @@ let articleController = {
       res.json(articles)
     })
   },
+  details: function(req, res) {
+    let id = req.params.id
+    articles.findById({_id: id}, function (err, article) {
+      if (err) throw err;
+      res.json(article)
+    })
+  },
   create: function(req, res){
     let data = {
       content :  req.body.content,

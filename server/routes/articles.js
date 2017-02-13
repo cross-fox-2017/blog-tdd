@@ -4,6 +4,7 @@ var articleController = require('../controllers/articleController')
 
 /* GET users listing. */
 router.get('/', articleController.read);
+router.get('/:id', articleController.details);
 router.post('/', articleController.create);
 router.delete('/:id', articleController.delete);
 router.put('/:id', articleController.update);
