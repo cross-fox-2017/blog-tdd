@@ -11,4 +11,6 @@ router.post('/api/login',Users.login)
 
 router.post('/api/register',Users.register)
 
+router.delete('/api/delete',Users.delete)
+
 module.exports = router;

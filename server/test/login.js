@@ -6,16 +6,40 @@ chai.use(chaiHttp)
 
 
 
-describe('Testing User Login', function() {
-    it('Return Token When Success Login', function(done) {
+describe('Testing Blog TTD', function() {
+    it('Testing Register', function(done) {
+        chai.request('http://localhost:3000')
+            .post('/api/register')
+            .send({
+                name: "user",
+                email: "user@gmail.com",
+                password: "user@gmail.com"
+            })
+            .end(function(err, res) {
+                res.body.should.have.property('_id');
+                done()
+            })
+    })
+    it('Testing Login', function(done) {
         chai.request('http://localhost:3000')
             .post('/api/login')
             .send({
-                email: "admin2@gmail.com",
-                password: "admin2@gmail.com"
+                email: "user@gmail.com",
+                password: "user@gmail.com"
             })
             .end(function(err, res) {
                 res.body.should.have.property('token');
+                done()
+            })
+    })
+    it('Remove User', function(done) {
+        chai.request('http://localhost:3000')
+            .delete('/api/delete')
+            .send({
+                email: "user@gmail.com"
+            })
+            .end(function(err, res) {
+                res.body.should.have.property('status');
                 done()
             })
     })

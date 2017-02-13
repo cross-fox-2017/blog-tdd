@@ -42,6 +42,19 @@ var Users = {
                 res.send(result)
             }
         })
+    },
+    delete: function(req, res, next) {
+      modelsUsers.find({
+        email:req.body.email
+      },function(err, result) {
+        if(err){
+          res.send(err)
+        }else{
+          res.send({
+            status:"Data Terhapus"
+          })
+        }
+      })
     }
 }
 
