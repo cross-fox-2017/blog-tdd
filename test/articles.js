@@ -10,6 +10,7 @@ const url = 'http://localhost:3000'
 
 describe('Testing article CRUD', function () {
   let createdId
+  let dummy = ['something', 'anything']
 
   before(function () {
     // drop collection
@@ -38,26 +39,26 @@ describe('Testing article CRUD', function () {
       })
   })
 
-  it('should get all articles', function (done) {
+  it('should be able to post new article', function (done) {
     chai.request(url)
-      .get('/api/articles')
+      .post('/api/articles')
+      .send({
+        title: dummy[0],
+        content: dummy[0]
+      })
       .end(function (err, res) {
-        res.body[0].title.should.equal('tentang dia')
+        createdId = res.body._id
+        res.body.title.should.equal(dummy[0])
         res.should.have.status(200)
         done()
       })
   })
 
-  it('should be able to post new article', function (done) {
+  it('should get all articles', function (done) {
     chai.request(url)
-      .post('/api/articles')
-      .send({
-        title: 'something',
-        content: 'something'
-      })
+      .get('/api/articles')
       .end(function (err, res) {
-        createdId = res.body._id
-        res.body.title.should.equal('something')
+        res.body[0].title.should.equal(dummy[0])
         res.should.have.status(200)
         done()
       })
@@ -67,11 +68,11 @@ describe('Testing article CRUD', function () {
     chai.request(url)
       .put(`/api/articles/${createdId}`)
       .send({
-        title: 'tentang kita',
-        content: 'bahagia'
+        title: dummy[1],
+        content: dummy[1]
       })
       .end(function (err, res) {
-        res.body.title.should.equal('tentang kita')
+        res.body.title.should.equal(dummy[1])
         res.should.have.status(200)
         done()
       })

@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 const articleController = require('../controllers/articles')
+const userController = require('../controllers/users')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -25,5 +26,18 @@ router.post('/api/articles', articleController.createArticle)
 router.put('/api/articles/:id', articleController.updateArticle)
 
 router.delete('/api/articles/:id', articleController.deleteArticle)
+
+router.get('/auth', function (req, res, next) {
+  res.send({
+    endpoints: [
+      '/auth/register',
+      '/auth/login'
+    ]
+  })
+})
+
+// router.get('/auth/register', userController.createUser)
+//
+// router.post('/auth/login', userController.verifyUser)
 
 module.exports = router
