@@ -39,7 +39,8 @@ var controllerUser = {
       // we have deleted the user
       res.json(data)
     })
-  }
+  },
+  login: function (req, res) {}
 }
 
 module.exports = controllerUser

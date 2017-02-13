@@ -4,7 +4,7 @@ var Schema = mongoose.Schema
 // create a schema
 var blogSchema = new Schema({
   blogid: Number,
-  author: Schema.Types.ObjectId,
+  author: String,
   title: String,
   text: String
 }, {
@@ -15,5 +15,4 @@ var blogSchema = new Schema({
 // we need to create a model using it
 var Blog = mongoose.model('Blog', blogSchema)
 
-// make this available to our users in our Node applications
 module.exports = Blog

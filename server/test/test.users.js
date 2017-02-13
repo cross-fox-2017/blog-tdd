@@ -7,6 +7,7 @@ let chaiHttp = require('chai-http')
 chai.use(chaiHttp)
 let should = chai.should()
 
+/* delete all user before testing*/
 describe('before testing user, delete all data user from database', () => {
   it(('remove all user data'), (done) => {
     User.remove({}, (err) => {
@@ -15,7 +16,7 @@ describe('before testing user, delete all data user from database', () => {
   })
 })
 
-/* testing */
+/* testing all user */
 describe('Testing User', () => {
   /* register new user */
   it('Testing Register New User', (done) => {
@@ -78,18 +79,17 @@ describe('Testing User', () => {
   })
 
   /* login */
-  //   it('Tesing user login', (done) => {
-  //     chai.request('http://localhost:3000')
-  //       .post('/api/users/login')
-  //       .send({
-  //         name: 'mil',
-  //         password: 'mil'
-  //       })
-  //       .end((err, res) => {
-  //         res.should.have.status(200)
-  //         res.body.name.should.to.exist
-  //         done()
-  //       })
-  //   })
-
+  it('Tesing user login', (done) => {
+    chai.request('http://localhost:3000')
+      .post('/api/users/login')
+      .send({
+        name: 'mil',
+        password: 'mil'
+      })
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.body.name.should.to.exist
+        done()
+      })
+  })
 })
