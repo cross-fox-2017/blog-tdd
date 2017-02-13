@@ -1,0 +1,24 @@
+{
+  "name": "blog-tdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Syanmil/blog-tdd.git"
+  },
+  "author": "Syanmil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Syanmil/blog-tdd/issues"
+  },
+  "homepage": "https://github.com/Syanmil/blog-tdd#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "chai-arrays": "0.0.1",
+    "chai-http": "^3.0.0"
+  }
+}
