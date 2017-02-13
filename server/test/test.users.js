@@ -25,12 +25,27 @@ describe('Testing User', () => {
       .send({
         userid: 3,
         username: 'mil',
-        password: '123'
+        password: 'mil'
       })
       .end((err, res) => {
         res.should.have.status(200)
         res.body.userid.should.equal(3)
         res.body.username.should.equal('mil')
+        done()
+      })
+  })
+
+  /* login */
+  it('Tesing user login', (done) => {
+    chai.request('http://localhost:3000')
+      .post('/api/users/login')
+      .send({
+        username: 'mil',
+        password: 'mil'
+      })
+      .end((err, res) => {
+        res.should.have.status(200)
+        res.body.token.should.to.exist
         done()
       })
   })
@@ -74,21 +89,6 @@ describe('Testing User', () => {
         res.should.have.status(200)
         res.body.userid.should.equal(3)
         res.body.username.should.equal('toni')
-        done()
-      })
-  })
-
-  /* login */
-  it('Tesing user login', (done) => {
-    chai.request('http://localhost:3000')
-      .post('/api/users/login')
-      .send({
-        name: 'mil',
-        password: 'mil'
-      })
-      .end((err, res) => {
-        res.should.have.status(200)
-        res.body.name.should.to.exist
         done()
       })
   })
