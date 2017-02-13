@@ -69,6 +69,19 @@ describe('Users API testing', () => {
   })
 })
 
+describe('Users SignIn testing', () => {
+  it('User get token when signin', (done) => {
+    chai.request(url).post('/api/users/signin').send({
+      username: 'dgana',
+      password: '123'
+    }).end((err, res) => {
+
+      expect(res.body.token).to.not.equal('');
+      done()
+    })
+  })
+})
+
 /*
 describe('CRUD Users', () => {
   // Add Users

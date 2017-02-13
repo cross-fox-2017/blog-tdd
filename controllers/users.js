@@ -22,16 +22,11 @@ const userController = {
     })
   },
   signIn: (req, res) => {
-    if(!req.body.username) {
-      res.json({ msg: 'Please input your username!'})
-    }
-    if(!req.body.password) {
-      res.json({ msg: 'Please input your password!'})
-    }
-
-    Users.find({
+    Users.findOne({
       username: req.body.username
     }, (err, user) => {
+      if (err) throw err
+
       if(!passwordHash.verify(req.body.password, user.password)) {
         res.send('Invalid Password!')
       } else {
@@ -41,7 +36,9 @@ const userController = {
         }, 'secret', {
           expiresIn: '24h'
         })
-        res.json(myToken)
+        res.json({
+          token: myToken
+        })
       }
     })
   },

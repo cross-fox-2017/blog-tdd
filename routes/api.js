@@ -8,6 +8,7 @@ router.get('/', userController.path)
 router.post('/users', userController.addUsers)
 router.get('/users', userController.getAllUsers)
 router.delete('/users/:id', userController.deleteUser)
+router.post('/users/signin', userController.signIn)
 
 // Blog Routes
 router.post('/blogs', blogController.addBlog)
