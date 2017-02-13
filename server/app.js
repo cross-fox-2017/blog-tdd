@@ -10,6 +10,12 @@ var users = require('./routes/users');
 
 var app = express();
 
+var mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/lostandfound', function (err) {
+  if (err) throw err
+  console.log('database connected using mongoose')
+})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
