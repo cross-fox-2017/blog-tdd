@@ -7,6 +7,12 @@ var bodyParser = require('body-parser');
 var cors = require('cors')//tambahan agar halaman bisa diakses dari client
 var user = require('./routes/user');
 var jwt = require('jsonwebtoken')
+const mongoose = require('mongoose');
+
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/blog-ttd')
+
 var app = express();
 
 // view engine setup

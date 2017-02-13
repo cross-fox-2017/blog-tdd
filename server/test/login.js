@@ -11,14 +11,11 @@ describe('Testing User Login', function() {
         chai.request('http://localhost:3000')
             .post('/api/login')
             .send({
-                username: "admin",
-                password: "admin"
+                email: "admin2@gmail.com",
+                password: "admin2@gmail.com"
             })
             .end(function(err, res) {
-                // console.log(res);
                 res.body.should.have.property('token');
-                // res.body.username.should.equal('asdassdfgdasdasd')
-                //Untuk Mengakhiri Request
                 done()
             })
     })
