@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Syanmil/blog-tdd#readme",
   "dependencies": {
-    "chai": "^3.5.0"
+    "chai": "^3.5.0",
+    "chai-arrays": "0.0.1"
   }
 }
