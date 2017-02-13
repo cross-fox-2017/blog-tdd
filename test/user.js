@@ -6,13 +6,23 @@ const expect = chai.expect
 chai.use(assertArrays)
 chai.use(chaiHttp)
 
-describe('blog engine CRUD Users', function(){
-  it('expect api/user to return token', function(done){
-    chai.request('http://localhost:3000')
-    .get('/api/users')
-    .end(function(err, res){
-      expect(res.body).to.have.property('token');
-      done()
-    })
-  })
-})
+var url = 'http://localhost:3000'
+
+// describe('blog engine CRUD Users', function(){
+//   it('expect api/user to return token', function(done){
+//     chai.request(url)
+//     .get('/api/users')
+//     .end(function(err, res){
+//       expect(res.body).to.have.property('token');
+//       done()
+//     })
+//   })
+//   it('expect api/user to return json', function(done){
+//     chai.request(url)
+//     .get('/api/users')
+//     .end(function(err, res){
+//       expect(res).to.be.json;
+//       done()
+//     })
+//   })
+// })

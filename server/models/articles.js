@@ -4,7 +4,7 @@ var Schema   = mongoose.Schema;
 var ArticlesSchema = new Schema({
   title : String,
   content: String,
-  author: Number
+  author: String
 },{
   timestamps: true
 })
