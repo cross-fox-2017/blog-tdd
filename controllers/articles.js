@@ -36,7 +36,7 @@ module.exports = {
     Articles.findOneAndRemove({
       _id: req.params.id
     }).then(function (data) {
-      res.send({m: `Deleted Item with ItemID: ${req.params.id}`})
+      res.send({m: `Deleted Article with ID: ${req.params.id}`})
     }).catch(function (err) {
       res.send({m: 'Error data not found'})
     })

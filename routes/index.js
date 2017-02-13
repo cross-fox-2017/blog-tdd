@@ -31,10 +31,20 @@ router.get('/auth', function (req, res, next) {
   res.send({
     endpoints: [
       '/auth/register',
-      '/auth/login'
+      '/auth/login',
+      '/auth/users',
+      '/auth/users/:id'
     ]
   })
 })
+
+router.get('/auth/users', userController.getUsers)
+
+router.post('/auth/users', userController.createUser)
+
+router.put('/auth/users/:id', userController.updateUser)
+
+router.delete('/auth/users/:id', userController.deleteUser)
 
 // router.get('/auth/register', userController.createUser)
 //

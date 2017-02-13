@@ -10,6 +10,7 @@ const url = 'http://localhost:3000'
 
 describe('Testing user CRUD', function () {
   let createdId
+  let dummy = ['adaaja', '123', 'adaaja@gmail.com', 'adaaja2', '456', 'adaaja2@yahoo.com']
 
   before(function () {
     // drop collection
@@ -32,57 +33,61 @@ describe('Testing user CRUD', function () {
         res.should.have.status(200)
         res.body.endpoints.should.equalTo([
           '/auth/register',
-          '/auth/login'
+          '/auth/login',
+          '/auth/users',
+          '/auth/users/:id'
         ])
         done()
       })
   })
 
-// it('should get all articles', function (done) {
-//   chai.request(url)
-//     .get('/api/articles')
-//     .end(function (err, res) {
-//       res.body[0].title.should.equal('tentang dia')
-//       res.should.have.status(200)
-//       done()
-//     })
-// })
-//
-// it('should be able to post new article', function (done) {
-//   chai.request(url)
-//     .post('/api/articles')
-//     .send({
-//       title: 'something',
-//       content: 'something'
-//     })
-//     .end(function (err, res) {
-//       createdId = res.body._id
-//       res.body.title.should.equal('something')
-//       res.should.have.status(200)
-//       done()
-//     })
-// })
-//
-// it('should be able to update article', function (done) {
-//   chai.request(url)
-//     .put(`/api/articles/${createdId}`)
-//     .send({
-//       title: 'tentang kita',
-//       content: 'bahagia'
-//     })
-//     .end(function (err, res) {
-//       res.body.title.should.equal('tentang kita')
-//       res.should.have.status(200)
-//       done()
-//     })
-// })
-//
-// it('should be able to delete article', function (done) {
-//   chai.request(url)
-//     .delete(`/api/articles/${createdId}`)
-//     .end(function (err, res) {
-//       res.should.have.status(200)
-//       done()
-//     })
-// })
+  it('should be able to post new user', function (done) {
+    chai.request(url)
+      .post('/auth/users')
+      .send({
+        username: dummy[0],
+        password: dummy[1],
+        email: dummy[2]
+      })
+      .end(function (err, res) {
+        createdId = res.body._id
+        res.body.email.should.equal(dummy[2])
+        res.should.have.status(200)
+        done()
+      })
+  })
+
+  it('should get all user', function (done) {
+    chai.request(url)
+      .get('/auth/users')
+      .end(function (err, res) {
+        res.body[0].password.should.equal(dummy[1])
+        res.should.have.status(200)
+        done()
+      })
+  })
+
+  it('should be able to update user', function (done) {
+    chai.request(url)
+      .put(`/auth/users/${createdId}`)
+      .send({
+        username: dummy[3],
+        password: dummy[4],
+        email: dummy[5]
+      })
+      .end(function (err, res) {
+        res.body.email.should.equal(dummy[5])
+        res.should.have.status(200)
+        done()
+      })
+  })
+
+  it('should be able to delete user', function (done) {
+    chai.request(url)
+      .delete(`/auth/users/${createdId}`)
+      .end(function (err, res) {
+        res.should.have.status(200)
+        done()
+      })
+  })
 })
