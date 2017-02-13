@@ -1,4 +1,6 @@
 # blog-tdd
+### important
+```
 express -e
 npm init
 npm install mocha
@@ -9,3 +11,4 @@ npm isntall --save express
 npm isntall --save mongoose
 npm isntall --save mongodb
 npm install
+```

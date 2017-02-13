@@ -20,7 +20,7 @@ describe('menjalankan method untuk artikel', function() {
   it('artikel berhasil dihapus', function(done){
     const art_id = '58a173fef710bc07181f4c51'
     chai.request('http://localhost:3000').delete(`/artikel/${art_id}`).end(function (err,res){
-      console.log(res);
+      // console.log(res);
       res.body.message.should.equal(`artikel dengan id ${art_id} berhasil dihapus`);
       // res.body.n.should.equal(1)
       done()
