@@ -11,25 +11,3 @@ describe('initial connection', function(){
     expect('everyting').to.be.ok
   })
 })
-
-describe('blog engine CRUD Users', function(){
-  it('expect api/user to return token', function(done){
-    chai.request('http://localhost:3000')
-    .get('/api/users')
-    .end(function(err, res){
-      expect(res.body).to.have.property('token');
-      done()
-    })
-  })
-})
-
-describe('blog engine CRUD Articles', function(){
-  it('expect api/user to return content', function(done){
-    chai.request('http://localhost:3000')
-    .get('/api/articles')
-    .end(function(err, res){
-      expect(res.body).to.have.property('content');
-      done()
-    })
-  })
-})
