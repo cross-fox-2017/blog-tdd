@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/blog');
 
 var posts = require('./routes/posts');
+var users = require('./routes/users');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', posts);
+app.use('/', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

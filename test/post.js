@@ -6,31 +6,33 @@ chai.use(chaiArrays);
 chai.use(chaiHttp);
 
 const models = require('../models/post');
+let tampungId = ""
 
-describe('Testing Blog', function () {
+describe('Testing Posts', function () {
   it('should return Schema', function () {
     models.should.be.ok
   })
   it('should return subject of new post', function (done) {
     chai.request('http://localhost:3000')
-    .post('/new')
+    .post('/post/new')
     .send({subject: "Test Post", text: "This post submitted from chai"})
     .end(function(err,res){
       res.body.subject.should.equal("Test Post")
+      tampungId = res.body._id
       done()
     })
   })
   it('should return blog post id with params id', function (done) {
     chai.request('http://localhost:3000')
-    .get('/post/58a1755d4574ba1a42df9b2a')
+    .get(`/post/${tampungId}`)
     .end(function(err,res){
-      res.body._id.should.equal("58a1755d4574ba1a42df9b2a")
+      res.body._id.should.equal(`${tampungId}`)
       done()
     })
   })
   it('should return blog post subject with edited subject', function (done) {
     chai.request('http://localhost:3000')
-    .put('/edit/post/58a1755d4574ba1a42df9b2a')
+    .put(`/edit/post/${tampungId}`)
     .send({subject:'UPDATED SUBJECT'})
     .end(function(err,res){
       res.body.subject.should.equal("UPDATED SUBJECT")
@@ -39,7 +41,7 @@ describe('Testing Blog', function () {
   })
   it('should return message deleted', function (done) {
     chai.request('http://localhost:3000')
-    .del('/delete/post/58a1755d4574ba1a42df9b2a')
+    .delete(`/delete/post/${tampungId}`)
     .end(function(err,res){
       res.body.should.be.an('object')
       done()
