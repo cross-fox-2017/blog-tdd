@@ -17,8 +17,9 @@ describe('Testing Blog TTD', function() {
             })
             .end(function(err, res) {
                 res.body.should.have.property('_id');
-                done()
             })
+            done()
+
     })
     it('Testing Login', function(done) {
         chai.request('http://localhost:3000')
@@ -29,8 +30,8 @@ describe('Testing Blog TTD', function() {
             })
             .end(function(err, res) {
                 res.body.should.have.property('token');
-                done()
             })
+            done()
     })
     it('Remove User', function(done) {
         chai.request('http://localhost:3000')
@@ -40,7 +41,7 @@ describe('Testing Blog TTD', function() {
             })
             .end(function(err, res) {
                 res.body.should.have.property('status');
-                done()
             })
+            done()
     })
 })

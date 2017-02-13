@@ -50,9 +50,16 @@ var Users = {
         if(err){
           res.send(err)
         }else{
-          res.send({
-            status:"Data Terhapus"
+          result[0].remove(function(err) {
+            if(err){
+              res.send(err)
+            }else{
+              res.send({
+                status:"Data Terhapus"
+              })
+            }
           })
+          
         }
       })
     }
