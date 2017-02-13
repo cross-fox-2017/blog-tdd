@@ -5,6 +5,7 @@ const chaiArrays = require('chai-arrays')
 const chaiHTTP = require('chai-http')
 chai.use(chaiArrays)
 chai.use(chaiHTTP)
+let hash = require('password-hash')
 
 const url = 'http://localhost:3000'
 
@@ -43,7 +44,7 @@ describe('Testing user CRUD', function () {
 
   it('should be able to post new user', function (done) {
     chai.request(url)
-      .post('/auth/users')
+      .post('/auth/register')
       .send({
         username: dummy[0],
         password: dummy[1],
@@ -61,7 +62,7 @@ describe('Testing user CRUD', function () {
     chai.request(url)
       .get('/auth/users')
       .end(function (err, res) {
-        res.body[0].password.should.equal(dummy[1])
+        res.body[0].username.should.equal(dummy[0])
         res.should.have.status(200)
         done()
       })
@@ -72,11 +73,24 @@ describe('Testing user CRUD', function () {
       .put(`/auth/users/${createdId}`)
       .send({
         username: dummy[3],
-        password: dummy[4],
-        email: dummy[5]
+        password: dummy[4]
       })
       .end(function (err, res) {
-        res.body.email.should.equal(dummy[5])
+        res.body.email.should.equal(dummy[2])
+        res.should.have.status(200)
+        done()
+      })
+  })
+
+  it('should be able to get token when login', function (done) {
+    chai.request(url)
+      .post(`/auth/login`)
+      .send({
+        username: dummy[3],
+        password: dummy[4]
+      })
+      .end(function (err, res) {
+        res.body.should.have.deep.property('token')
         res.should.have.status(200)
         done()
       })
@@ -86,6 +100,7 @@ describe('Testing user CRUD', function () {
     chai.request(url)
       .delete(`/auth/users/${createdId}`)
       .end(function (err, res) {
+        res.body.should.have.deep.property('m')
         res.should.have.status(200)
         done()
       })

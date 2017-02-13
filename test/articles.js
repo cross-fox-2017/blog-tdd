@@ -82,6 +82,7 @@ describe('Testing article CRUD', function () {
     chai.request(url)
       .delete(`/api/articles/${createdId}`)
       .end(function (err, res) {
+        res.body.should.have.deep.property('m')
         res.should.have.status(200)
         done()
       })

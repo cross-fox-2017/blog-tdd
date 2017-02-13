@@ -40,14 +40,12 @@ router.get('/auth', function (req, res, next) {
 
 router.get('/auth/users', userController.getUsers)
 
-router.post('/auth/users', userController.createUser)
+router.post('/auth/register', userController.createUser)
 
 router.put('/auth/users/:id', userController.updateUser)
 
 router.delete('/auth/users/:id', userController.deleteUser)
 
-// router.get('/auth/register', userController.createUser)
-//
-// router.post('/auth/login', userController.verifyUser)
+router.post('/auth/login', userController.verifyUser)
 
 module.exports = router

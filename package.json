@@ -16,12 +16,14 @@
     "express": "~4.14.1",
     "mongoose": "^4.8.2",
     "morgan": "~1.7.0",
+    "password-hash": "^1.2.2",
     "serve-favicon": "~2.3.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-arrays": "0.0.1",
     "chai-http": "^3.0.0",
+    "jsonwebtoken": "^7.2.1",
     "live-server": "^1.2.0",
     "nodemon": "^1.11.0"
   }
