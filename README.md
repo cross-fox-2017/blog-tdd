@@ -8,3 +8,4 @@ npm isntall --save nodemon
 npm isntall --save express
 npm isntall --save mongoose
 npm isntall --save mongodb
+npm install
