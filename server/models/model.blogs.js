@@ -2,17 +2,18 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 // create a schema
-var userSchema = new Schema({
-  userid: Number,
-  username: { type: String, required: true},
-  password: { type: String, required: true}
+var blogSchema = new Schema({
+  blogid: Number,
+  author: Schema.Types.ObjectId,
+  title: String,
+  text: String
 }, {
   timestamps: true
 })
 
 // the schema is useless so far
 // we need to create a model using it
-var User = mongoose.model('User', userSchema)
+var Blog = mongoose.model('Blog', blogSchema)
 
 // make this available to our users in our Node applications
-module.exports = User
+module.exports = Blog

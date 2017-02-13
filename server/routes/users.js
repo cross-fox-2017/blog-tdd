@@ -2,9 +2,10 @@ var express = require('express')
 var router = express.Router()
 const controllerUser = require('../controllers/controller.users')
 
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource')
-})
+router.get('/:id', controllerUser.getOneUser)
+router.get('/', controllerUser.getAllUser)
+router.post('/', controllerUser.createOneUser)
+router.put('/', controllerUser.editOneUser)
+router.delete('/', controllerUser.deleteOneUser)
 
 module.exports = router
