@@ -50,7 +50,6 @@ module.exports = {
     Users.findOne({
       username: req.body.username
     }).then(function (data) {
-      console.log(data)
       if (hash.verify(req.body.password, data.password)) {
         let token = jwt.sign({data}, config.secret, {algorithm: 'HS256'}, {expiresIn: '1h'})
         res.send({
