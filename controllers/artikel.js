@@ -21,8 +21,8 @@ module.exports = {
 
   update : function(req, res, next) {
     Blog.findOneAndUpdate({_id: req.params.id},{judul: req.body.judul})
-      .then(function(data){
-        res.send(data)
+      .then(function(result){
+        res.send(result)
         console.log(res);
       })
       .catch(function(err){
