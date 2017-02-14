@@ -10,6 +10,6 @@ var artikelSchema = new Schema({
     timestamp: true
   })
 
-var Artikel = mongoose.model('Item', artikelSchema)
+var Artikel = mongoose.model('Artikel', artikelSchema)
 
 module.exports = Artikel

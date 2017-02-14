@@ -20,16 +20,16 @@ describe('Testing Artikel', function () {
     .end(function(err,res){
       res.body.title.should.equal("Ini Title")
       paramsId = res.body._id
+      done()
     })
-    done()
   })
   it('should return artikel id with params id', function (done) {
     chai.request('http://localhost:3000')
     .get(`/artikel/${paramsId}`)
     .end(function(err,res){
       res.body._id.should.equal(`${paramsId}`)
+      done()
     })
-    done()
   })
   it('should return artikel title with edited title', function (done) {
     chai.request('http://localhost:3000')
@@ -37,15 +37,15 @@ describe('Testing Artikel', function () {
     .send({"title":'updated title'})
     .end(function(err,res){
       res.body.title.should.equal("updated title")
+      done()
     })
-    done()
   })
   it('should return message deleted', function (done) {
     chai.request('http://localhost:3000')
     .delete(`/artikel/${paramsId}`)
     .end(function(err,res){
       res.body.should.be.an('object')
+      done()
     })
-    done()
   })
 })
