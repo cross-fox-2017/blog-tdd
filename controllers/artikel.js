@@ -17,5 +17,16 @@ module.exports = {
         if (err) throw err
       res.send({message:`artikel dengan id ${req.params.id} berhasil dihapus`})
     })
+  },
+
+  update : function(req, res, next) {
+    Blog.findOneAndUpdate({_id: req.params.id},{judul: req.body.judul})
+      .then(function(data){
+        res.send(data)
+        console.log(res);
+      })
+      .catch(function(err){
+        res.json('error')
+      })
   }
 }

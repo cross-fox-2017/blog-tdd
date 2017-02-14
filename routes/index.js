@@ -6,6 +6,8 @@ router.post('/artikel', artikelController.create)
 
 router.get('/artikel', artikelController.find)
 
+router.put('/artikel/:id', artikelController.update)
+
 router.delete('/artikel/:id', artikelController.delete)
 
 module.exports = router;

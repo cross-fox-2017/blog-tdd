@@ -13,7 +13,14 @@ describe('menjalankan method untuk artikel', function() {
   })
   it('artikel berhasil dimunculkan pada daftar artikel', function(done){
     chai.request('http://localhost:3000').get('/artikel').end(function (err,res){
-      res.body.should.have.deep.property("[0].judul","ini judul")
+      res.body.should.have.deep.property("[5].judul","ini judul")
+      done()
+    })
+  })
+  it('artikel berhasil diupdate', function(done){
+    const art_id = '58a28984793bae043e6ff225'
+    chai.request('http://localhost:3000').put(`/artikel/${art_id}`).send({"judul":"berhasil ubah judul"}).end(function (err,res){
+      res.body.should.have.deep.property("judul","berhasil ubah judul")
       done()
     })
   })
@@ -26,13 +33,5 @@ describe('menjalankan method untuk artikel', function() {
       done()
     })
   })
-})
 
-// describe('menjalankan method untuk login', function() {
-//   it('user berhasil login', function(done){
-//     chai.request('http://localhost:3000').post('/login').end(function (err,res){
-//       res.body.should.have.deep.property('[0].id','1')
-//       done()
-//     })
-//   })
-// })
+})
