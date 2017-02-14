@@ -11,7 +11,7 @@ var users = require('./routes/users');
 var app = express();
 
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/lostandfound', function (err) {
+mongoose.connect('mongodb://localhost/blog', function (err) {
   if (err) throw err
   console.log('database connected using mongoose')
 })

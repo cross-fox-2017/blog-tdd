@@ -1,31 +1,51 @@
-var chai   = require('chai')
-var should = chai.should()
-var chaiHttp = require('chai-http')
+const chai = require('chai');
+const should = chai.should();
+const chaiArrays = require('chai-arrays');
+const chaiHttp = require('chai-http');
+const models = require('../models/artikel');
 
-chai.use(chaiHttp)
+chai.use(chaiArrays);
+chai.use(chaiHttp);
 
-describe('pengecekan crud artikel', function () {
-  it('jika artikel berhasil disimpan akan mengirimkan id artikel', function(done) {
-      chai.request('http://localhost:3000').post('/artikel').send(
-        {title: "this title",
-        isi:"ini isinya"
-      }).end(function(err, res){
-          res.body.should.have.been.property("this title","ini isinya")
-          done()
-      })
+let paramsId = ""
+
+describe('Testing Artikel', function () {
+  it('should return Schema', function () {
+    models.should.be.ok
   })
-
-  it('jika artikel berhasil disimpan akan mengirimkan id artikel', function(done) {
-      chai.request('http://localhost:3000').get('/artikel').end(function(err, res){
-          res.body.should.have.been.property("[0].title","this title")
-          done()
-      })
+  it('should return title of new post', function (done) {
+    chai.request('http://localhost:3000')
+    .post('/artikel')
+    .send({"title": "Ini Title", "text": "Ini isi"})
+    .end(function(err,res){
+      res.body.title.should.equal("Ini Title")
+      paramsId = res.body._id
+    })
+    done()
   })
-
-  it('jika artikel berhasil disimpan akan mengirimkan id artikel', function(done) {
-      chai.request('http://localhost:3000').delete('/artikel/:id').end(function(err,res){
-          res.body.message.equal(`artikel with id ${artikel.id} has been deleted`)
-          done()
-      })
+  it('should return artikel id with params id', function (done) {
+    chai.request('http://localhost:3000')
+    .get(`/artikel/${paramsId}`)
+    .end(function(err,res){
+      res.body._id.should.equal(`${paramsId}`)
+    })
+    done()
+  })
+  it('should return artikel title with edited title', function (done) {
+    chai.request('http://localhost:3000')
+    .put(`/artikel/${paramsId}`)
+    .send({"title":'updated title'})
+    .end(function(err,res){
+      res.body.title.should.equal("updated title")
+    })
+    done()
+  })
+  it('should return message deleted', function (done) {
+    chai.request('http://localhost:3000')
+    .delete(`/artikel/${paramsId}`)
+    .end(function(err,res){
+      res.body.should.be.an('object')
+    })
+    done()
   })
 })

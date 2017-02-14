@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 var artikelSchema = new Schema({
-  
+  title: String,
+  text: String
 },
   {
     timestamp: true
